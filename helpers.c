@@ -77,7 +77,7 @@ long int convert_to_size(long int num, int size)
  *
  * Return: The casted value of num.
  */
-unsigned long int convert_to_unsigned_size(unsigned long int num, int size)
+long int convert_to_unsigned_size(unsigned long int num, int size)
 {
     if (size == S_LONG)
         return num;
