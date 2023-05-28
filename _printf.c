@@ -8,6 +8,12 @@ int _putchar(char c)
     return write(1, &c, 1);
 }
 
+/**
+ * _printf - prints formatted output to stdout
+ * @format: pointer to a format string
+ *
+ * Return: number of characters printed (excluding the null byte)
+ */
 int _printf(const char *format, ...)
 {
     va_list args;
