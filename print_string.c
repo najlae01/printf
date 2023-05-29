@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int printf_hex(char value);
+
 /**
  * print_string - writes the character c to stdout
  * @s: The string to print
@@ -26,7 +28,7 @@ int print_string(va_list s)
 			if (my_string[i] < 16)
 				_putchar('0');
 			count += 3;
-			count += print_hex(my_string[i]);
+			count += printf_hex(my_string[i]);
 		}
 		else
 		{
@@ -39,12 +41,12 @@ int print_string(va_list s)
 }
 
 /**
- * print_hex - prints a hexadecimal value of a given character.
+ * printf_hex - prints a hexadecimal value of a given character.
  * @value: The character value.
  *
  * Return: The number of characters printed.
  */
-int print_hex(char value)
+int printf_hex(char value)
 {
 	int count = 0;
 	char hex[2];
