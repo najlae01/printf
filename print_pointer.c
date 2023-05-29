@@ -10,14 +10,14 @@ int printf_hex(unsigned long value);
  *
  * Return: The number of characters printed.
  */
+
 int print_pointer(va_list p)
 {
-    uintptr_t pointer = (uintptr_t)va_arg(p, void *);
+	uintptr_t pointer = (uintptr_t)va_arg(p, void *);
 
-    _putchar('0');
-    _putchar('x');
-
-    return printf_hex((unsigned long)pointer) + 2;
+	_putchar('0');
+	_putchar('x');
+	return (printf_hex((unsigned long)pointer) + 2);
 }
 
 /**
@@ -28,32 +28,31 @@ int print_pointer(va_list p)
  */
 int printf_hex(unsigned long value)
 {
-    int count = 0;
-    char hex[16];
+	int count = 0;
+	char hex[16];
+	int i;
+	int digit;
 
-    if (value == 0)
-    {
-        _putchar('0');
-        count++;
-    }
-    else
-    {
-        while (value != 0)
-        {
-            int digit = value % 16;
-            if (digit < 10)
-                hex[count] = digit + '0';
-            else
-                hex[count] = digit - 10 + 'A';
-
-            value /= 16;
-            count++;
-        }
-
-        for (int i = count - 1; i >= 0; i--)
-            _putchar(hex[i]);
-    }
-
-    return count;
+	if (value == 0)
+	{
+		_putchar('0');
+		count++;
+	}
+	else
+	{
+		while (value != 0)
+		{
+			digit = value % 16;
+			if (digit < 10)
+				hex[count] = digit + '0';
+			else
+				hex[count] = digit - 10 + 'A';
+			value /= 16;
+			count++;
+		}
+		for (i = count - 1; i >= 0; i--)
+			_putchar(hex[i]);
+	}
+	return (count);
 }
 
