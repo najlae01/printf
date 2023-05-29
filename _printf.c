@@ -1,5 +1,6 @@
 #include "main.h"
-
+#include <stdarg.h>
+#include <unistd.h>
 /**
   * find_function - function that finds formats for _printf
   * calls the corresponding function.
