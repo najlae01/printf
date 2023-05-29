@@ -2,63 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int printf_hex1(char value);
-
 /**
- * print_string - writes the character c to stdout
+ * print_string - prints a string
  * @s: The string to print
  *
- * Return: The number of characters printed.
+ * Return: The number of characters printed
  */
 int print_string(va_list s)
 {
-	char *my_string;
-	int i, count = 0;
+	char *str = va_arg(s, char *);
+	int count = 0;
 
-	my_string = va_arg(s, char *);
-	if (my_string == NULL)
-		my_string = "(null)";
+	if (str == NULL)
+		str = "(null)";
 
-	for (i = 0; my_string[i] != '\0'; i++)
+	while (*str)
 	{
-		if (my_string[i] < ' ' || my_string[i] >= 127)
-		{
-			_putchar('\\');
-			_putchar('x');
-			if (my_string[i] < 16)
-				_putchar('0');
-			count += 3;
-			count += printf_hex1(my_string[i]);
-		}
-		else
-		{
-			_putchar(my_string[i]);
-			count++;
-		}
+		_putchar(*str);
+		str++;
+		count++;
 	}
 
 	return (count);
 }
-
-/**
- * printf_hex1 - prints a hexadecimal value of a given character.
- * @value: The character value.
- *
- * Return: The number of characters printed.
- */
-int printf_hex1(char value)
-{
-	int count = 0;
-	char hex[3];
-
-	hex[0] = "0123456789ABCDEF"[(value >> 4) & 0x0F];
-	hex[1] = "0123456789ABCDEF"[value & 0x0F];
-	hex[2] = '\0';
-
-	_putchar(hex[0]);
-	_putchar(hex[1]);
-	count += 2;
-
-	return (count);
-}
-
