@@ -22,6 +22,7 @@ int (*find_function(const char *format))(va_list)
 		{"x", print_x},
 		{"X", print_X},
 		{"R", print_rot13},
+		{"p", print_pointer},
 		{NULL, NULL}
 	};
 
