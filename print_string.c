@@ -49,10 +49,11 @@ int print_string(va_list s)
 int printf_hex(char value)
 {
 	int count = 0;
-	char hex[2];
+	char hex[3];
 
 	hex[0] = "0123456789ABCDEF"[(value >> 4) & 0x0F];
 	hex[1] = "0123456789ABCDEF"[value & 0x0F];
+	hex[2] = '\0';
 
 	_putchar(hex[0]);
 	_putchar(hex[1]);
