@@ -1,66 +1,77 @@
 #include "main.h"
 
-void flush_buffer(char buffer[], int *buffer_index);
-
 /**
- * custom_printf - Custom printf function
- * @format: Format string
- * Return: Number of characters printed
- */
-int custom_printf(const char *format, ...)
+  * find_function - function that finds formats for _printf
+  * calls the corresponding function.
+  * @format: format (char, string, int, decimal)
+  * Return: NULL or function associated ;
+  */
+int (*find_function(const char *format))(va_list)
 {
-	int i, printed = 0, printed_chars = 0;
-	int flags, width, precision, size, buffer_index = 0;
-	va_list args;
-	char buffer[BUFFER_SIZE];
+	unsigned int i = 0;
+	code_f find_f[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"i", print_int},
+		{"d", print_dec},
+		{"r", print_rev},
+		{"b", print_bin},
+		{"u", print_unsig},
+		{"o", print_octal},
+		{"x", print_x},
+		{"X", print_X},
+		{"R", print_rot13},
+		{NULL, NULL}
+	};
+
+	while (find_f[i].sc)
+	{
+		if (find_f[i].sc[0] == (*format))
+			return (find_f[i].f);
+		i++;
+	}
+	return (NULL);
+}
+/**
+  * _printf - function that produces output according to a format.
+  * @format: format (char, string, int, decimal)
+  * Return: size the output text;
+  */
+int _printf(const char *format, ...)
+{
+	va_list ap;
+	int (*f)(va_list);
+	unsigned int i = 0, cprint = 0;
 
 	if (format == NULL)
 		return (-1);
-
-	va_start(args, format);
-
-	for (i = 0; format && format[i] != '\0'; i++)
+	va_start(ap, format);
+	while (format[i])
 	{
-		if (format[i] != '%')
+		while (format[i] != '%' && format[i])
 		{
-			buffer[buffer_index++] = format[i];
-			if (buffer_index == BUFFER_SIZE)
-				flush_buffer(buffer, &buffer_index);
-			printed_chars++;
+			_putchar(format[i]);
+			cprint++;
+			i++;
 		}
+		if (format[i] == '\0')
+			return (cprint);
+		f = find_function(&format[i + 1]);
+		if (f != NULL)
+		{
+			cprint += f(ap);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		cprint++;
+		if (format[i + 1] == '%')
+			i += 2;
 		else
-		{
-			flush_buffer(buffer, &buffer_index);
-			flags = get_flags(format, &i);
-			width = get_width(format, &i, args);
-			precision = get_precision(format, &i, args);
-			size = get_size(format, &i);
-			++i;
-			printed = handle_print(format, &i, args, buffer,
-				flags, width, precision, size);
-			if (printed == -1)
-				return (-1);
-			printed_chars += printed;
-		}
+			i++;
 	}
-
-	flush_buffer(buffer, &buffer_index);
-
-	va_end(args);
-
-	return (printed_chars);
+	va_end(ap);
+	return (cprint);
 }
-
-/**
- * flush_buffer - Prints the contents of the buffer if it exists
- * @buffer: Character array (buffer)
- * @buffer_index: Index at which to add the next character, represents the length
- */
-void flush_buffer(char buffer[], int *buffer_index)
-{
-	if (*buffer_index > 0)
-		write(1, &buffer[0], *buffer_index);
-
-	*buffer_index = 0;
-}
-
