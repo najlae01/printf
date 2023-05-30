@@ -22,7 +22,6 @@ int print_X(va_list X);
 int print_rot13(va_list R);
 int print_pointer(va_list p);
 int print_custom_string(va_list s);
-void handle_flags(int *count, bool flag_plus, bool flag_space, bool flag_hash);
 /**
   * struct code_format - Struct format
   *
