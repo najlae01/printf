@@ -10,30 +10,27 @@
  */
 int print_custom_string(va_list s)
 {
-    char *str = va_arg(s, char *);
-    int count = 0;
+	char *str = va_arg(s, char *);
+	int count = 0;
 
-    if (str == NULL)
-        str = "(null)";
-
-    while (*str)
-    {
-        if (*str < 32 || *str >= 127)
-        {
-            _putchar('\\');
-            _putchar('x');
-            _putchar((*str / 16) < 10 ? (*str / 16) + '0' : (*str / 16) - 10 + 'A');
-            _putchar((*str % 16) < 10 ? (*str % 16) + '0' : (*str % 16) - 10 + 'A');
-            count += 4;
-        }
-        else
-        {
-            _putchar(*str);
-            count++;
-        }
-
-        str++;
-    }
-
-    return count;
+	if (str == NULL)
+		str = "(null)";
+	while (*str)
+	{
+		if (*str < 32 || *str >= 127)
+		{
+			_putchar('\\');
+			_putchar('x');
+			_putchar((*str / 16) < 10 ? (*str / 16) + '0' : (*str / 16) - 10 + 'A');
+			_putchar((*str % 16) < 10 ? (*str % 16) + '0' : (*str % 16) - 10 + 'A');
+			count += 4;
+		}
+		else
+		{
+			_putchar(*str);
+			count++;
+		}
+		str++;
+	}
+	return (count);
 }
