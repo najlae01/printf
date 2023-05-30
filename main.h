@@ -1,6 +1,7 @@
 #ifndef MAIN_PRINTF
 #define MAIN_PRINTF
 
+#include <stdbool.h>
 #include <limits.h>
 #include <stdarg.h>
 #include <stdlib.h>
