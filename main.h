@@ -19,8 +19,6 @@ int print_octal(va_list o);
 int print_x(va_list x);
 int print_X(va_list X);
 int print_rot13(va_list R);
-int print_custom_string(va_list s);
-
 /**
   * struct code_format - Struct format
   *
@@ -29,8 +27,8 @@ int print_custom_string(va_list s);
   */
 typedef struct code_format
 {
-        char *sc;
-        int (*f)(va_list);
+	char *sc;
+	int (*f)(va_list);
 } code_f;
 
 #endif

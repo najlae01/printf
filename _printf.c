@@ -15,7 +15,6 @@ int (*find_function(const char *format))(va_list)
 		{"s", print_string},
 		{"i", print_int},
 		{"d", print_dec},
-		{"S", print_custom_string},
 		{"r", print_rev},
 		{"b", print_bin},
 		{"u", print_unsig},
