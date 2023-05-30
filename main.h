@@ -1,7 +1,6 @@
 #ifndef MAIN_PRINTF
 #define MAIN_PRINTF
 
-#include <stdbool.h>
 #include <limits.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -22,7 +21,7 @@ int print_X(va_list X);
 int print_rot13(va_list R);
 int print_pointer(va_list p);
 int print_custom_string(va_list s);
-void handle_flags(int *count, bool flag_plus, bool flag_space, bool flag_hash);
+
 /**
   * struct code_format - Struct format
   *
@@ -31,8 +30,8 @@ void handle_flags(int *count, bool flag_plus, bool flag_space, bool flag_hash);
   */
 typedef struct code_format
 {
-	char *sc;
-	int (*f)(va_list);
+        char *sc;
+        int (*f)(va_list);
 } code_f;
 
 #endif
