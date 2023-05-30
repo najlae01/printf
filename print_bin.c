@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include "main.h"
+
 /**
 * print_bin - convert to binary
 * @b: number in decinal
@@ -8,7 +9,7 @@
 */
 int print_bin(va_list b)
 {
-	unsigned int len, powten, j, digit, n, num;
+	unsigned int len, powten, i, digit, n, num;
 	int count = 0;
 
 	n = va_arg(b, unsigned int);
@@ -22,9 +23,9 @@ int print_bin(va_list b)
 			len++;
 		}
 		powten = 1;
-		for (j = 1; j <= len - 1; j++)
+		for (i = 1; i <= len - 1; i++)
 			powten *= 2;
-		for (j = 1; j <= len; j++)
+		for (i = 1; i <= len; i++)
 		{
 			digit = n / powten;
 			_putchar(digit + '0');

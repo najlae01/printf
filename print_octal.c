@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
 * print_octal - unsigned int argument is converted to unsigned octal
 * @o: unsigned to be converted
@@ -7,7 +8,7 @@
 */
 int print_octal(va_list o)
 {
-	unsigned int len, powten, j, digit, n, num;
+	unsigned int len, powten, i, digit, n, num;
 	int count = 0;
 
 	n = va_arg(o, unsigned int);
@@ -21,9 +22,9 @@ int print_octal(va_list o)
 			len++;
 		}
 		powten = 1;
-		for (j = 1; j <= len - 1; j++)
+		for (i = 1; i <= len - 1; i++)
 			powten *= 8;
-		for (j = 1; j <= len; j++)
+		for (i = 1; i <= len; i++)
 		{
 			digit = n / powten;
 			_putchar(digit + '0');

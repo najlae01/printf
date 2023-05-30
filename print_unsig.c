@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
 * print_unsig - function that prints unsigned number
 * @u: unsigned number
@@ -7,7 +8,7 @@
 */
 int print_unsig(va_list u)
 {
-	unsigned int len, powten, j, digit, n, num;
+	unsigned int len, powten, i, digit, n, num;
 	int count = 0;
 
 	n = va_arg(u, unsigned int);
@@ -21,9 +22,9 @@ int print_unsig(va_list u)
 			len++;
 		}
 		powten = 1;
-		for (j = 1; j <= len - 1; j++)
+		for (i = 1; i <= len - 1; i++)
 			powten *= 10;
-		for (j = 1; j <= len; j++)
+		for (i = 1; i <= len; i++)
 		{
 			digit = n / powten;
 			_putchar(digit + '0');

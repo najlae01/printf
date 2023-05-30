@@ -1,14 +1,15 @@
 #include "main.h"
+
 /**
 * print_hex - function that prints an unsigned int in hexadecimal
 * @n: unsigned to be printed
 * @c: case of printing (0 = lower, 1 = upper)
-* Descriptions: prints unsigned in hexadecimal with _putchar
+*
 * Return: size the output
 */
 int print_hex(unsigned int n, unsigned int c)
 {
-	unsigned int len, powten, j, digit, num;
+	unsigned int len, powten, i, digit, num;
 	int count = 0;
 	char diff;
 
@@ -26,9 +27,9 @@ int print_hex(unsigned int n, unsigned int c)
 			len++;
 		}
 		powten = 1;
-		for (j = 1; j <= len - 1; j++)
+		for (i = 1; i <= len - 1; i++)
 			powten *= 16;
-		for (j = 1; j <= len; j++)
+		for (i = 1; i <= len; i++)
 		{
 			digit = n / powten;
 			if (digit < 10)
@@ -47,6 +48,7 @@ int print_hex(unsigned int n, unsigned int c)
 	}
 	return (count);
 }
+
 /**
 * print_x - takes an unsigned int an prints it in lowercase hex
 * @x: unsigned int to print
@@ -57,6 +59,7 @@ int print_x(va_list x)
 {
 	return (print_hex(va_arg(x, unsigned int), 0));
 }
+
 /**
 * print_X - takes an unsigned int an prints it in uppercase hex
 * @X: unsigned int to print

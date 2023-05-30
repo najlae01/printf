@@ -1,10 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+
 /**
   * find_function - function that finds formats for _printf
   * calls the corresponding function.
   * @format: format (char, string, int, decimal)
+  *
   * Return: NULL or function associated ;
   */
 int (*find_function(const char *format))(va_list)
@@ -34,20 +36,22 @@ int (*find_function(const char *format))(va_list)
 	}
 	return (NULL);
 }
+
 /**
   * _printf - function that produces output according to a format.
   * @format: format (char, string, int, decimal)
+  *
   * Return: size the output text;
   */
 int _printf(const char *format, ...)
 {
-	va_list ap;
+	va_list app;
 	int (*f)(va_list);
 	unsigned int i = 0, cprint = 0;
 
 	if (format == NULL)
 		return (-1);
-	va_start(ap, format);
+	va_start(app, format);
 	while (format[i])
 	{
 		while (format[i] != '%' && format[i])
@@ -61,7 +65,7 @@ int _printf(const char *format, ...)
 		f = find_function(&format[i + 1]);
 		if (f != NULL)
 		{
-			cprint += f(ap);
+			cprint += f(app);
 			i += 2;
 			continue;
 		}
@@ -74,6 +78,6 @@ int _printf(const char *format, ...)
 		else
 			i++;
 	}
-	va_end(ap);
+	va_end(app);
 	return (cprint);
 }

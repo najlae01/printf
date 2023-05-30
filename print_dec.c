@@ -1,13 +1,14 @@
 #include "main.h"
+
 /**
-* print_dec - function that prints an decimal
-* @d: integer to print
-* Descriptions: prints digit with _putchar
+* print_dec - function that prints an decimal.
+* @d: integer
+*
 * Return: size the output text
 */
 int print_dec(va_list d)
 {
-	int len, powten, j, digit, n, count = 0, num;
+	int len, powten, i, digit, n, count = 0, num;
 
 	n = va_arg(d, int);
 	if (n != 0)
@@ -25,9 +26,9 @@ int print_dec(va_list d)
 			len++;
 		}
 		powten = 1;
-		for (j = 1; j <= len - 1; j++)
+		for (i = 1; i <= len - 1; i++)
 			powten *= 10;
-		for (j = 1; j <= len; j++)
+		for (i = 1; i <= len; i++)
 		{
 			digit = n / powten;
 			if (n < 0)
