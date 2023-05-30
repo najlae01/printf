@@ -9,23 +9,21 @@
  */
 int print_int(va_list i)
 {
-    int n = va_arg(i, int);
+    int num = va_arg(i, int);
     int count = 0;
     bool flag_plus = false;
     bool flag_space = false;
-    bool flag_hash = false;
+    handle_flags(&count, flag_plus, flag_space, false);
 
-    handle_flags(&count, flag_plus, flag_space, flag_hash);
+    int len, powten, j, digit, n;
 
-    int len, powten, j, digit, num;
-
+    n = va_arg(i, int);
     if (n != 0)
     {
         if (n < 0)
         {
             _putchar('-');
             count++;
-            n *= -1;
         }
         num = n;
         len = 0;
@@ -40,7 +38,10 @@ int print_int(va_list i)
         for (j = 1; j <= len; j++)
         {
             digit = n / powten;
-            _putchar(digit + '0');
+            if (n < 0)
+                _putchar((digit * -1) + 48);
+            else
+                _putchar(digit + '0');
             count++;
             n -= digit * powten;
             powten /= 10;
@@ -53,3 +54,4 @@ int print_int(va_list i)
     }
     return count;
 }
+
